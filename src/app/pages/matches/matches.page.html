@@ -1,0 +1,160 @@
+
+<ion-header class="matches-header">
+  <ion-toolbar>
+    <ion-title>
+      <span class="title-main">Mes</span>
+      <span class="title-accent"> matchs</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="matches-content">
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+      pullingText="Tirez pour actualiser"
+      refreshingSpinner="crescent"
+      refreshingText="Actualisation...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="matches-container">
+
+    <!-- Introduction -->
+    <div class="page-intro">
+      <div class="intro-text">
+        <span class="eyebrow">VOTRE COMPATIBILITÉ</span>
+        <h2>Le cinéma vous rapproche</h2>
+        <p>Découvrez les personnes qui partagent vos goûts cinématographiques.</p>
+      </div>
+      <div class="intro-icon">💜</div>
+    </div>
+
+    <!-- Chargement -->
+    @if (loading) {
+      <div class="state-card">
+        <ion-spinner name="crescent"></ion-spinner>
+        <h3>Recherche de vos matchs...</h3>
+        <p>Nous comparons vos préférences cinéma.</p>
+      </div>
+    }
+
+    <!-- Aucun film favori -->
+    @else if (!auth.profile()?.favorites?.length) {
+      <div class="state-card">
+        <div class="state-icon">🎬</div>
+        <h3>Votre aventure commence ici</h3>
+        <p>
+          Ajoutez des films à votre playlist pour découvrir les personnes
+          qui partagent vos goûts.
+        </p>
+      </div>
+    }
+
+    <!-- Aucun match au seuil choisi -->
+    @else if (!matches.length) {
+      <div class="state-card">
+        <div class="state-icon">🔎</div>
+        <h3>Aucun match pour le moment</h3>
+        <p>
+          Aucun utilisateur ne dépasse
+          <strong>{{ threshold }} %</strong>
+          de correspondance pour l'instant.
+        </p>
+
+        @if (hidden) {
+          <div class="hidden-profiles">
+            <span class="hidden-icon">ℹ</span>
+            {{ hidden }} profil(s) en dessous du seuil.
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Liste des matchs -->
+    @if (!loading && auth.profile()?.favorites?.length && matches.length) {
+      <div class="results-heading">
+        <div>
+          <h3>Vos correspondances</h3>
+          <p>Des passionnés de cinéma comme vous</p>
+        </div>
+        <span class="results-count">{{ matches.length }} profil(s)</span>
+      </div>
+
+      <div class="match-list">
+        @for (r of matches; track r.user.uid) {
+          <ion-card class="match-card">
+
+            <!-- En-tête du profil -->
+            <div class="match-profile">
+              <div class="avatar-wrapper">
+                @if (r.user.photo) {
+                  <img
+                    class="avatar"
+                    [src]="r.user.photo"
+                    [alt]="'Photo de ' + r.user.prenom">
+                } @else {
+                  <div class="avatar-placeholder">👤</div>
+                }
+              </div>
+
+              <div class="profile-info">
+                <h2>{{ r.user.prenom }} {{ r.user.nom }}</h2>
+                <p>{{ r.user.age }} ans</p>
+                <span class="shared-interest">Passion cinéma</span>
+              </div>
+
+              <div class="score-badge">
+                <span class="score-number">{{ r.score }}%</span>
+                <span class="score-label">Match</span>
+              </div>
+            </div>
+
+            <!-- Compatibilité détaillée -->
+            <ion-card-content>
+              <div class="details-heading">
+                <span class="details-icon">✦</span>
+                <h3>Votre compatibilité</h3>
+              </div>
+
+              <div class="criteria-list">
+                @for (c of criteria; track c.key) {
+                  <div class="criterion">
+                    <div class="criterion-top">
+                      <span class="criterion-label">{{ c.label }}</span>
+                      <span class="criterion-value">{{ r.detail[c.key] }}%</span>
+                    </div>
+
+                    <ion-progress-bar
+                      class="compatibility-bar"
+                      [value]="r.detail[c.key] / 100">
+                    </ion-progress-bar>
+                  </div>
+                }
+              </div>
+
+              <!-- Films en commun -->
+              @if (r.common.length) {
+                <div class="common-movies">
+                  <div class="common-heading">
+                    <span class="common-icon">🎞️</span>
+                    <h3>Films en commun</h3>
+                  </div>
+
+                  <p>{{ r.common.join(', ') }}</p>
+                </div>
+              }
+            </ion-card-content>
+
+          </ion-card>
+        }
+      </div>
+    }
+
+    <div class="bottom-note">
+      <span>🎥</span>
+      Les meilleurs films sont encore meilleurs à partager.
+    </div>
+
+  </div>
+</ion-content>

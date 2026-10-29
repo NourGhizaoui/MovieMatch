@@ -1,0 +1,185 @@
+
+<ion-header>
+  <ion-toolbar class="profile-toolbar">
+    <ion-title>
+      <span class="title-main">Mon </span>
+      <span class="title-accent">Profil</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="profile-content">
+  @if (authService.profile(); as user) {
+    <div class="profile-container">
+
+      <div class="profile-heading">
+        <span class="eyebrow">MON ESPACE PERSONNEL</span>
+        <h1>Bonjour, {{ user.prenom }} !</h1>
+        <p>Gérez vos informations et votre compte MovieMatch.</p>
+      </div>
+
+      <section class="profile-card">
+        <div class="card-heading">
+          <div class="heading-icon">👤</div>
+          <div>
+            <h2>Informations personnelles</h2>
+            <p>Vos informations de profil</p>
+          </div>
+        </div>
+
+        <div class="avatar-section">
+          <div class="avatar-wrapper">
+            @if (editing && photo) {
+              <img [src]="photo" alt="Photo de profil">
+            } @else if (user.photo) {
+              <img [src]="user.photo" alt="Photo de profil">
+            } @else {
+              <div class="avatar-placeholder">
+                {{ user.prenom.charAt(0) }}{{ user.nom.charAt(0) }}
+              </div>
+            }
+          </div>
+
+          @if (editing) {
+            <ion-button fill="outline" size="small" (click)="changePhoto()">
+              <ion-icon name="camera-outline" slot="start"></ion-icon>
+              Changer la photo
+            </ion-button>
+          }
+        </div>
+
+        @if (editing) {
+          <div class="profile-form">
+            <ion-item>
+              <ion-label position="stacked">Prénom</ion-label>
+              <ion-input
+                [(ngModel)]="prenom"
+                name="prenom"
+                placeholder="Votre prénom">
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Nom</ion-label>
+              <ion-input
+                [(ngModel)]="nom"
+                name="nom"
+                placeholder="Votre nom">
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Âge</ion-label>
+              <ion-input
+                [(ngModel)]="age"
+                name="age"
+                type="number"
+                min="1"
+                max="120">
+              </ion-input>
+            </ion-item>
+
+            <div class="form-actions">
+              <ion-button
+                expand="block"
+                (click)="saveProfile()"
+                [disabled]="saving">
+                {{ saving ? 'Enregistrement...' : 'Enregistrer' }}
+              </ion-button>
+
+              <ion-button
+                expand="block"
+                fill="clear"
+                color="medium"
+                (click)="cancelEditing()"
+                [disabled]="saving">
+                Annuler
+              </ion-button>
+            </div>
+          </div>
+        } @else {
+          <div class="info-list">
+            <div class="info-row">
+              <span class="info-icon">👤</span>
+              <div class="info-text">
+                <span class="info-label">Prénom</span>
+                <strong>{{ user.prenom }}</strong>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span class="info-icon">🪪</span>
+              <div class="info-text">
+                <span class="info-label">Nom</span>
+                <strong>{{ user.nom }}</strong>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span class="info-icon">🎂</span>
+              <div class="info-text">
+                <span class="info-label">Âge</span>
+                <strong>{{ user.age }} ans</strong>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span class="info-icon">✉️</span>
+              <div class="info-text">
+                <span class="info-label">Adresse e-mail</span>
+                <strong class="email-value">{{ user.email }}</strong>
+              </div>
+            </div>
+          </div>
+
+          <ion-button
+            expand="block"
+            class="edit-button"
+            (click)="startEditing()">
+            <ion-icon name="create-outline" slot="start"></ion-icon>
+            Modifier mon profil
+          </ion-button>
+        }
+      </section>
+
+      <section class="profile-card account-card">
+        <div class="card-heading">
+          <div class="heading-icon">⚙️</div>
+          <div>
+            <h2>Gestion du compte</h2>
+            <p>Sécurité et accès à votre compte</p>
+          </div>
+        </div>
+
+        <button class="account-action" type="button" (click)="resetPassword()">
+          <span class="action-icon">🔑</span>
+          <span class="action-text">
+            <strong>Modifier le mot de passe</strong>
+            <small>Recevoir un lien par e-mail</small>
+          </span>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
+
+        <button class="account-action logout-action" type="button" (click)="logout()">
+          <span class="action-icon">🚪</span>
+          <span class="action-text">
+            <strong>Se déconnecter</strong>
+            <small>Quitter votre compte MovieMatch</small>
+          </span>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
+      </section>
+
+      <p class="profile-footer">MovieMatch · Votre univers cinéma</p>
+
+<br><br><br><br>
+
+
+    </div>
+  } @else {
+    <div class="loading-profile">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Chargement du profil...</p>
+    </div>
+  }
+</ion-content>

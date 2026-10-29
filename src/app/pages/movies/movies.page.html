@@ -1,0 +1,280 @@
+
+<ion-header class="movies-header">
+  <ion-toolbar>
+    <ion-title>
+      <span class="title-main">Movie</span><span class="title-accent">Match</span>
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button class="logout-button" (click)="logout()" aria-label="Se déconnecter">
+        <span class="logout-icon">↪</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar class="search-toolbar">
+    <div class="search-container">
+      <div class="search-heading">
+        <div>
+          <h2>Explorer les films</h2>
+          <p>Découvrez votre prochain film préféré.</p>
+        </div>
+        <span class="film-icon">🎬</span>
+      </div>
+
+      <ion-searchbar
+        class="movie-search"
+        placeholder="Rechercher un film..."
+        [debounce]="500"
+        (ionInput)="load($event.detail.value || '')">
+      </ion-searchbar>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="movies-content">
+  <div class="movies-container">
+
+    @if (loading) {
+      <div class="empty-state">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Recherche des films...</p>
+      </div>
+    } @else if (!movies.length) {
+      <div class="empty-state">
+        <div class="empty-icon">🎞️</div>
+        <h3>Aucun film trouvé</h3>
+        <p>Essayez un autre titre pour découvrir de nouveaux films.</p>
+      </div>
+    } @else {
+
+      <!-- Titre de la section -->
+      <div class="section-heading">
+        <div>
+          <h3>À découvrir</h3>
+          <p>Les films qui pourraient vous plaire</p>
+        </div>
+        <span class="movie-count">
+          {{ filteredMovies.length }} film(s)
+        </span>
+      </div>
+
+      <!-- Filtre par genre -->
+      <div class="genre-filter">
+        <h3>Filtrer par genre</h3>
+
+        <div class="genre-list">
+          @for (genre of availableGenres; track genre) {
+            <button
+              type="button"
+              class="genre-chip"
+              [class.active]="selectedGenre === genre"
+              (click)="selectGenre(genre)">
+              {{ genre }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Grille des films filtrés -->
+      @if (filteredMovies.length > 0) {
+        <div class="poster-grid">
+          @for (m of filteredMovies; track m.id) {
+            <div
+              class="poster"
+              role="button"
+              tabindex="0"
+              (click)="openDetails(m)"
+              (keydown.enter)="openDetails(m)"
+              (keydown.space)="openDetails(m); $event.preventDefault()"
+              [attr.aria-label]="'Voir les détails de ' + m.title">
+
+              <div class="poster-image">
+                <img
+                  [src]="m.poster || 'assets/icon/favicon.png'"
+                  [alt]="m.title"
+                  loading="lazy">
+
+                <div class="poster-overlay"></div>
+
+                <ion-button
+                  class="favorite-button"
+                  [class.is-favorite]="playlist.isFav(m)"
+                  fill="solid"
+                  (click)="toggle(m); $event.stopPropagation()"
+                  [attr.aria-label]="playlist.isFav(m) ? 'Retirer des favoris' : 'Ajouter aux favoris'">
+
+                  <span>{{ playlist.isFav(m) ? '♥' : '♡' }}</span>
+                </ion-button>
+
+                @if (m.source === 'local') {
+                  <span class="local-badge">Ajout admin</span>
+                }
+              </div>
+
+              <div class="meta">
+                <b>{{ m.title }}</b>
+
+                @if (m.year) {
+                  <span class="movie-year">{{ m.year }}</span>
+                }
+
+                <span class="details-hint">Découvrir le film →</span>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <div class="empty-icon">🎭</div>
+          <h3>Aucun film dans ce genre</h3>
+          <p>Essayez un autre genre ou sélectionnez « Tous ».</p>
+        </div>
+      }
+    }
+
+  </div>
+</ion-content>
+
+<!-- Fenêtre de détails du film -->
+<ion-modal
+  class="movie-details-modal"
+  [isOpen]="detailsOpen"
+  (didDismiss)="closeDetails()"
+  [backdropDismiss]="true">
+
+  <ng-template>
+    <ion-header class="details-header">
+      <ion-toolbar>
+        <ion-title>Détails du film</ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button
+            class="details-close"
+            (click)="closeDetails()"
+            aria-label="Fermer">
+            ✕
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="details-content">
+      @if (selectedMovie; as movie) {
+
+        <div class="details-container">
+
+          <!-- Affiche et titre -->
+          <div class="details-hero">
+            <img
+              class="details-poster"
+              [src]="movie.poster || 'assets/icon/favicon.png'"
+              [alt]="movie.title">
+
+            <div class="details-hero-overlay"></div>
+
+            <div class="details-hero-title">
+              <span class="details-label">MOVIEMATCH · FILM</span>
+
+              <h1>{{ movie.title }}</h1>
+
+              @if (movie.year) {
+                <span class="details-year">📅 {{ movie.year }}</span>
+              }
+            </div>
+          </div>
+
+          <!-- Informations du film -->
+          <div class="details-body">
+
+            <!-- Genres -->
+            @if (movie.genres && movie.genres.length > 0) {
+              <section class="details-section">
+                <h2><span>▌</span> Genres</h2>
+
+                <div class="details-badges">
+                  @for (genre of movie.genres; track genre) {
+                    <span class="details-badge">🎭 {{ genre }}</span>
+                  }
+                </div>
+              </section>
+            }
+
+            <!-- Année et source -->
+            <div class="details-badges">
+              @if (movie.year) {
+                <span class="details-badge">📅 Année : {{ movie.year }}</span>
+              }
+
+              @if (movie.source === 'tmdb') {
+                <span class="details-badge">🌐 Source : TMDB</span>
+              } @else {
+                <span class="details-badge">🎬 Ajouté par l'administration</span>
+              }
+            </div>
+
+            <!-- Synopsis -->
+            <section class="details-section">
+              <h2><span>▌</span> Synopsis</h2>
+
+              @if (movie.overview) {
+                <p>{{ movie.overview }}</p>
+              } @else {
+                <p class="details-empty">
+                  Aucun résumé disponible pour ce film.
+                </p>
+              }
+            </section>
+
+            <!-- Distribution des acteurs -->
+            <section class="details-section">
+              <h2><span>▌</span> Distribution et acteurs</h2>
+
+              @if (movie.cast && movie.cast.length > 0) {
+                <div class="cast-list">
+                  @for (actor of movie.cast; track actor) {
+                    <div class="cast-item">
+                      <span class="cast-avatar">👤</span>
+                      <span class="cast-name">{{ actor }}</span>
+                    </div>
+                  }
+                </div>
+              } @else {
+                <p class="details-empty">
+                  Les informations sur les acteurs ne sont pas disponibles.
+                </p>
+              }
+            </section>
+
+            <!-- Actions -->
+            <div class="details-actions">
+              <ion-button
+                expand="block"
+                class="details-favorite"
+                (click)="toggle(movie)">
+
+                <span class="details-heart">
+                  {{ playlist.isFav(movie) ? '♥' : '♡' }}
+                </span>
+
+                {{ playlist.isFav(movie)
+                  ? 'Retirer des favoris'
+                  : 'Ajouter aux favoris' }}
+              </ion-button>
+
+              <ion-button
+                expand="block"
+                fill="outline"
+                class="details-back"
+                (click)="closeDetails()">
+                Retour aux films
+              </ion-button>
+            </div>
+
+          </div>
+        </div>
+
+      }
+    </ion-content>
+  </ng-template>
+</ion-modal>

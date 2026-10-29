@@ -1,0 +1,35 @@
+
+<ion-tabs class="moviematch-tabs">
+
+  <ion-tab-bar slot="bottom" class="custom-tab-bar">
+
+    <ion-tab-button tab="movies">
+      <span class="tab-icon">🎬</span>
+      <ion-label>Films</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="playlist">
+      <span class="tab-icon heart-icon">♥</span>
+      <ion-label>Ma playlist</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="matches">
+      <span class="tab-icon people-icon">♧</span>
+      <ion-label>Matchs</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile">
+      <span class="tab-icon">👤</span>
+      <ion-label>Profil</ion-label>
+    </ion-tab-button>
+
+    @if (auth.profile()?.role === 'admin') {
+      <ion-tab-button tab="admin">
+        <span class="tab-icon">⚙</span>
+        <ion-label>Admin</ion-label>
+      </ion-tab-button>
+    }
+
+  </ion-tab-bar>
+
+</ion-tabs>

@@ -1,0 +1,531 @@
+
+:host {
+  --app-background: #0b0b14;
+  --accent: #8b5cf6;
+  --accent-light: #b49aff;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+}
+
+/* En-tête */
+
+.matches-header ion-toolbar {
+  --background: #0b0b14;
+  --color: #ffffff;
+  --border-color: rgba(255, 255, 255, 0.07);
+}
+
+.matches-header ion-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.title-main {
+  color: #ffffff;
+}
+
+.title-accent {
+  color: #a78bfa;
+}
+
+/* Fond principal */
+
+.matches-content {
+  --background: #0b0b14;
+}
+
+.matches-container {
+  min-height: 100%;
+  box-sizing: border-box;
+  padding: 22px 16px 30px;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(124, 58, 237, 0.15),
+      transparent 42%
+    ),
+    #0b0b14;
+}
+
+/* Introduction */
+
+.page-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.intro-text {
+  min-width: 0;
+}
+
+.eyebrow {
+  color: #b49aff;
+  font-size: 0.67rem;
+  font-weight: 750;
+  letter-spacing: 1.5px;
+}
+
+.intro-text h2 {
+  margin: 9px 0 8px;
+  color: #ffffff;
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  line-height: 1.25;
+}
+
+.intro-text p {
+  max-width: 290px;
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.intro-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(196, 181, 253, 0.18);
+  border-radius: 19px;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.25),
+    rgba(109, 40, 217, 0.12)
+  );
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.12);
+  font-size: 27px;
+}
+
+/* Titre des résultats */
+
+.results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 16px;
+}
+
+.results-heading h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 750;
+}
+
+.results-heading p {
+  margin: 6px 0 0;
+  color: #85859c;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.results-count {
+  flex-shrink: 0;
+  padding: 7px 10px;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 20px;
+  background: rgba(139, 92, 246, 0.1);
+  color: #c4b5fd;
+  font-size: 0.72rem;
+  font-weight: 650;
+}
+
+/* Liste des matchs */
+
+.match-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.match-card {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  background: rgba(24, 24, 39, 0.96);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Profil du match */
+
+.match-profile {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 19px 16px;
+  background: linear-gradient(
+    120deg,
+    rgba(139, 92, 246, 0.13),
+    rgba(24, 24, 39, 0.2) 80%
+  );
+}
+
+.avatar-wrapper {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  padding: 3px;
+  border: 1px solid rgba(167, 139, 250, 0.65);
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.14);
+}
+
+.avatar,
+.avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: #252239;
+}
+
+.avatar {
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  font-size: 27px;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-info h2 {
+  margin: 0 0 5px;
+  overflow-wrap: anywhere;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.profile-info p {
+  margin: 0 0 7px;
+  color: #a1a1b5;
+  font-size: 0.8rem;
+}
+
+.shared-interest {
+  display: inline-block;
+  padding: 4px 8px;
+  border: 1px solid rgba(167, 139, 250, 0.17);
+  border-radius: 8px;
+  background: rgba(139, 92, 246, 0.1);
+  color: #c4b5fd;
+  font-size: 0.67rem;
+  font-weight: 600;
+}
+
+/* Score de compatibilité */
+
+.score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 66px;
+  height: 66px;
+  border: 1px solid rgba(196, 181, 253, 0.3);
+  border-radius: 19px;
+  background: linear-gradient(
+    145deg,
+    rgba(139, 92, 246, 0.3),
+    rgba(109, 40, 217, 0.12)
+  );
+  box-shadow: inset 0 0 18px rgba(139, 92, 246, 0.07);
+}
+
+.score-number {
+  color: #d8caff;
+  font-size: 1.12rem;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.score-label {
+  margin-top: 4px;
+  color: #b49aff;
+  font-size: 0.65rem;
+  font-weight: 650;
+}
+
+/* Contenu de la carte */
+
+.match-card ion-card-content {
+  padding: 19px 17px 17px;
+  color: #ffffff;
+}
+
+.details-heading,
+.common-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.details-heading {
+  margin-bottom: 19px;
+}
+
+.details-icon {
+  color: #b49aff;
+  font-size: 19px;
+}
+
+.details-heading h3,
+.common-heading h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* Critères et barres de progression */
+
+.criteria-list {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.criterion {
+  min-width: 0;
+}
+
+.criterion-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.criterion-label {
+  color: #c7c7d5;
+  font-size: 0.81rem;
+  line-height: 1.4;
+}
+
+.criterion-value {
+  flex-shrink: 0;
+  color: #c4b5fd;
+  font-size: 0.8rem;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.compatibility-bar {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 10px;
+  --background: #303044;
+  --progress-background: linear-gradient(
+    90deg,
+    #6d28d9,
+    #a78bfa
+  );
+}
+
+/* Films en commun */
+
+.common-movies {
+  margin-top: 21px;
+  padding: 15px 13px;
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  border-radius: 15px;
+  background: rgba(139, 92, 246, 0.07);
+}
+
+.common-heading {
+  margin-bottom: 9px;
+}
+
+.common-icon {
+  font-size: 18px;
+}
+
+.common-heading h3 {
+  font-size: 0.88rem;
+}
+
+.common-movies p {
+  margin: 0;
+  color: #bcb8cc;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/* Chargement et états vides */
+
+.state-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  padding: 34px 22px;
+  border: 1px dashed rgba(167, 139, 250, 0.24);
+  border-radius: 22px;
+  background: rgba(24, 24, 39, 0.72);
+  text-align: center;
+}
+
+.state-card ion-spinner {
+  width: 38px;
+  height: 38px;
+  color: #a78bfa;
+}
+
+.state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 24px;
+  background: rgba(139, 92, 246, 0.12);
+  font-size: 34px;
+}
+
+.state-card h3 {
+  margin: 14px 0 8px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 750;
+}
+
+.state-card p {
+  max-width: 310px;
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.state-card p strong {
+  color: #c4b5fd;
+}
+
+.hidden-profiles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(139, 92, 246, 0.1);
+  color: #c4b5fd;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.hidden-icon {
+  font-size: 17px;
+}
+
+/* Message de bas de page */
+
+.bottom-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+  color: #77778d;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.bottom-note span {
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+/* Adaptation mobile */
+
+@media (max-width: 360px) {
+  .matches-container {
+    padding: 18px 12px 26px;
+  }
+
+  .intro-text h2 {
+    font-size: 1.32rem;
+  }
+
+  .intro-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 23px;
+  }
+
+  .match-profile {
+    gap: 9px;
+    padding: 16px 11px;
+  }
+
+  .avatar-wrapper {
+    width: 52px;
+    height: 52px;
+  }
+
+  .profile-info h2 {
+    font-size: 0.88rem;
+  }
+
+  .score-badge {
+    width: 57px;
+    height: 59px;
+    border-radius: 15px;
+  }
+
+  .score-number {
+    font-size: 0.98rem;
+  }
+
+  .match-card ion-card-content {
+    padding: 16px 13px;
+  }
+}
+
+/* Tablette et ordinateur */
+
+@media (min-width: 600px) {
+  .matches-container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 28px 24px 40px;
+  }
+
+  .page-intro {
+    margin-bottom: 32px;
+  }
+
+  .match-profile {
+    padding: 22px;
+  }
+
+  .match-card ion-card-content {
+    padding: 22px;
+  }
+}

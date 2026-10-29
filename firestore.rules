@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'; }
+
+    match /users/{uid} {
+      allow read: if signedIn();
+      // L'inscription crée toujours un compte "user" actif
+      allow create: if signedIn() && request.auth.uid == uid
+                    && request.resource.data.role == 'user' && request.resource.data.active == true;
+      // Un utilisateur ne peut pas modifier son rôle ni son statut
+      allow update: if (request.auth.uid == uid
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['favorites','photo','nom','prenom','age']))
+                    || isAdmin();
+      allow delete: if false; // jamais de suppression : on désactive
+    }
+    match /movies/{id} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+  }
+}

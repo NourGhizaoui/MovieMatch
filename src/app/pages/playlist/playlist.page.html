@@ -1,0 +1,111 @@
+
+<ion-header class="playlist-header">
+  <ion-toolbar>
+    <ion-title>
+      <span class="title-main">Ma</span>
+      <span class="title-accent"> playlist</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="playlist-content">
+  <div class="playlist-container">
+
+    @if (auth.profile(); as p) {
+      <!-- Profil utilisateur -->
+      <div class="profile-card">
+        <div class="profile-avatar-wrapper">
+          @if (p.photo) {
+            <img class="avatar" [src]="p.photo" alt="Photo de profil">
+          } @else {
+            <div class="avatar-placeholder">👤</div>
+          }
+          <span class="online-indicator"></span>
+        </div>
+
+        <div class="profile-info">
+          <span class="profile-label">MON PROFIL</span>
+          <h2>{{ p.prenom }} {{ p.nom }}</h2>
+          <p>{{ p.age }} ans · Passionné(e) de cinéma</p>
+        </div>
+
+        <div class="profile-decoration">🎬</div>
+
+        <div class="profile-stats">
+          <div class="stat-item">
+            <span class="stat-number">{{ p.favorites.length }}</span>
+            <span class="stat-label">Favoris</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">♥</span>
+            <span class="stat-label">Ma sélection</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Titre de la playlist -->
+      <div class="section-heading">
+        <div>
+          <h2>Mes films préférés</h2>
+          <p>Votre collection personnelle de cinéma</p>
+        </div>
+        <span class="count-badge">{{ p.favorites.length }}</span>
+      </div>
+
+      <!-- Playlist vide -->
+      @if (!p.favorites.length) {
+        <div class="empty-state">
+          <div class="empty-icon">🍿</div>
+          <h3>Votre playlist est vide</h3>
+          <p>
+            Les films que vous aimez apparaîtront ici.
+            Explorez les films et appuyez sur le cœur pour les ajouter à vos favoris.
+          </p>
+        </div>
+      }
+
+      <!-- Grille des favoris -->
+      @if (p.favorites.length) {
+        <div class="poster-grid">
+          @for (m of p.favorites; track m.id) {
+            <div class="poster">
+              <div class="poster-image">
+                <img
+                  [src]="m.poster || 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAICTAEAOw=='"
+                  [alt]="m.title"
+                  loading="lazy">
+
+                <div class="poster-overlay"></div>
+
+                <ion-button
+                  class="remove-button"
+                  fill="solid"
+                  (click)="playlist.toggle(m)"
+                  [attr.aria-label]="'Retirer ' + m.title + ' des favoris'">
+                  <span>×</span>
+                </ion-button>
+
+                <span class="favorite-badge">♥ Favori</span>
+              </div>
+
+              <div class="meta">
+                <b>{{ m.title }}</b>
+                <span class="movie-details">
+                  @if (m.year) {
+                    {{ m.year }}
+                  }
+                  @if (m.year && m.genres?.length) {
+                    <span class="detail-separator">·</span>
+                  }
+                  {{ m.genres.join(', ') }}
+                </span>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    }
+
+  </div>
+</ion-content>

@@ -1,0 +1,209 @@
+
+/* Fond général */
+.login-content {
+  --background: #0b0b14;
+}
+
+.login-container {
+  min-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 36px 22px 24px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(124, 58, 237, 0.20),
+      transparent 45%
+    ),
+    #0b0b14;
+}
+
+/* Présentation MovieMatch */
+.brand {
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.brand-icon {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 22px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 8px 28px rgba(139, 92, 246, 0.3);
+}
+
+.logo-icon {
+  font-size: 34px;
+}
+
+.brand h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.brand h1 span {
+  color: #a78bfa;
+}
+
+.brand p {
+  margin: 12px 0 0;
+  color: #a1a1b5;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Carte du formulaire */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  padding: 28px 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+
+  background: rgba(24, 24, 39, 0.94);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+}
+
+.login-card h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.65rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 8px 0 26px;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+/* Champs de saisie */
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 18px;
+  padding: 4px 14px;
+
+  border: 1px solid #343449;
+  border-radius: 14px;
+  background: #171725;
+
+  transition: border-color 0.2s ease;
+}
+
+.input-group:focus-within {
+  border-color: #8b5cf6;
+}
+
+/* Icônes sans fichiers SVG */
+.field-icon {
+  flex-shrink: 0;
+  width: 24px;
+  color: #a78bfa;
+  font-size: 20px;
+  text-align: center;
+}
+
+.input-group ion-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 54px;
+
+  --color: #ffffff;
+  --placeholder-color: #88889d;
+  --highlight-color-focused: #a78bfa;
+
+  font-size: 0.95rem;
+}
+
+/* Bouton de connexion */
+.login-button {
+  --background: #7c3aed;
+  --background-hover: #8b5cf6;
+  --background-activated: #6d28d9;
+  --border-radius: 14px;
+  --box-shadow: 0 6px 18px rgba(124, 58, 237, 0.25);
+  --color: #ffffff;
+
+  height: 52px;
+  margin: 26px 0 12px;
+
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.2px;
+}
+
+.login-button ion-spinner {
+  width: 22px;
+  height: 22px;
+  color: #ffffff;
+}
+
+/* Zone d'inscription */
+.register-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+
+  margin-top: 12px;
+  text-align: center;
+}
+
+.register-section span {
+  color: #a1a1b5;
+  font-size: 0.85rem;
+}
+
+.register-button {
+  --color: #b49aff;
+
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-transform: none;
+}
+
+/* Pied de page */
+.footer {
+  margin-top: 28px;
+  color: #717187;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Adaptation aux petits écrans */
+@media (max-width: 360px) {
+  .login-container {
+    padding: 24px 16px;
+  }
+
+  .brand h1 {
+    font-size: 2rem;
+  }
+
+  .login-card {
+    padding: 24px 16px;
+  }
+}

@@ -1,0 +1,116 @@
+
+:host {
+  --tab-background: #11111d;
+  --tab-accent: #a78bfa;
+}
+
+/* Barre de navigation */
+
+.moviematch-tabs {
+  --background: #0b0b14;
+}
+
+.custom-tab-bar {
+  position: relative;
+  display: flex;
+  height: 70px;
+  padding: 7px 5px calc(7px + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(167, 139, 250, 0.16);
+  background: rgba(17, 17, 29, 0.98);
+  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.22);
+}
+
+/* Chaque onglet */
+
+.custom-tab-bar ion-tab-button {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  --background: transparent;
+  --background-focused: rgba(139, 92, 246, 0.1);
+  --color: #77778d;
+  --color-selected: #c4b5fd;
+  --ripple-color: rgba(167, 139, 250, 0.2);
+  font-size: 0.7rem;
+  font-weight: 550;
+  transition: color 0.2s ease;
+}
+
+/* Icônes */
+
+.tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  margin-bottom: 3px;
+  border-radius: 10px;
+  font-size: 21px;
+  line-height: 1;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.heart-icon {
+  font-size: 25px;
+}
+
+.people-icon {
+  font-size: 25px;
+}
+
+/* Texte */
+
+.custom-tab-bar ion-label {
+  margin-top: 2px;
+  font-size: 0.69rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Onglet sélectionné */
+
+.custom-tab-bar ion-tab-button.tab-selected {
+  --color: #c4b5fd;
+}
+
+.custom-tab-bar ion-tab-button.tab-selected .tab-icon {
+  background: rgba(139, 92, 246, 0.17);
+  color: #c4b5fd;
+  transform: translateY(-1px);
+}
+
+/* Indicateur violet au-dessus de l'onglet actif */
+
+.custom-tab-bar ion-tab-button.tab-selected::before {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 24px;
+  height: 3px;
+  border-radius: 0 0 5px 5px;
+  background: #a78bfa;
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.4);
+  content: "";
+  transform: translateX(-50%);
+}
+
+/* Petits écrans */
+
+@media (max-width: 360px) {
+  .custom-tab-bar {
+    height: 66px;
+    padding-right: 2px;
+    padding-left: 2px;
+  }
+
+  .custom-tab-bar ion-label {
+    font-size: 0.63rem;
+  }
+
+  .tab-icon {
+    font-size: 19px;
+  }
+}

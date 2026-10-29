@@ -1,0 +1,33 @@
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/flex-utils.css";
+@import "@ionic/angular/css/display.css";
+
+:root {
+  --ion-font-family: 'Figtree', sans-serif;
+  --ion-background-color: #12262b;
+  --ion-text-color: #f3ece0;
+  --ion-toolbar-background: #0d1d21;
+  --ion-tab-bar-background: #0d1d21;
+  --ion-item-background: #1b3339;
+  --ion-color-primary: #f2b84b;
+  --ion-color-primary-contrast: #1a1206;
+  --ion-color-primary-rgb: 242,184,75;
+  --ion-color-primary-shade: #d5a242;
+  --ion-color-primary-tint: #f3bf5d;
+  --ion-color-danger: #e2674a;
+}
+h1, h2, ion-title { font-family: 'Fraunces', serif; font-weight: 800; }
+.poster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; padding: 14px; }
+.poster { position: relative; border-radius: 6px; overflow: hidden; background: #1b3339; }
+.poster img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; background: #0d1d21; }
+.poster .meta { padding: 8px 10px 10px; font-size: 13px; }
+.poster .meta b { display: block; line-height: 1.2; }
+.poster .meta span { opacity: .65; }
+.poster ion-button { position: absolute; top: 2px; right: 2px; --padding-start: 6px; --padding-end: 6px; }
+.empty { text-align: center; opacity: .7; padding: 48px 24px; }
+.avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; background: #0d1d21; }
+.form { max-width: 480px; margin: 0 auto; padding: 16px; }

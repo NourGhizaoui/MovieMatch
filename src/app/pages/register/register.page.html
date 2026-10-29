@@ -1,0 +1,153 @@
+
+<ion-header class="register-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="register-content">
+
+  <div class="register-container">
+
+    <!-- Présentation -->
+    <div class="brand">
+      <div class="brand-icon">
+        <span class="logo-icon">🎬</span>
+      </div>
+
+      <h1>Movie<span>Match</span></h1>
+
+      <p>
+        Rejoignez notre communauté de passionnés
+        et partagez votre amour du cinéma.
+      </p>
+    </div>
+
+    <!-- Formulaire -->
+    <div class="register-card">
+
+      <h2>Créer un compte</h2>
+      <p class="subtitle">Complétez vos informations pour commencer</p>
+
+      <!-- Photo de profil -->
+      <div class="photo-section">
+
+        @if (photo) {
+          <img
+            class="avatar"
+            [src]="photo"
+            alt="Photo de profil">
+        } @else {
+          <div class="avatar-placeholder">
+            <span>👤</span>
+          </div>
+        }
+
+        <h3>Votre photo de profil</h3>
+
+        <p>Ajoutez une photo pour personnaliser votre compte.</p>
+
+        <ion-button
+          fill="outline"
+          class="photo-button"
+          (click)="takePhoto()">
+
+          <span class="camera-icon">📷</span>
+
+          {{ photo ? 'Reprendre la photo' : 'Prendre une photo' }}
+
+        </ion-button>
+
+      </div>
+
+      <!-- Prénom -->
+      <div class="input-group">
+        <span class="field-icon">👤</span>
+
+        <ion-input
+          label="Prénom"
+          labelPlacement="floating"
+          [(ngModel)]="prenom">
+        </ion-input>
+      </div>
+
+      <!-- Nom -->
+      <div class="input-group">
+        <span class="field-icon">🪪</span>
+
+        <ion-input
+          label="Nom"
+          labelPlacement="floating"
+          [(ngModel)]="nom">
+        </ion-input>
+      </div>
+
+      <!-- Âge -->
+      <div class="input-group">
+        <span class="field-icon">🎂</span>
+
+        <ion-input
+          label="Âge"
+          labelPlacement="floating"
+          type="number"
+          [(ngModel)]="age">
+        </ion-input>
+      </div>
+
+      <!-- E-mail -->
+      <div class="input-group">
+        <span class="field-icon">✉</span>
+
+        <ion-input
+          label="Adresse e-mail"
+          labelPlacement="floating"
+          type="email"
+          [(ngModel)]="email">
+        </ion-input>
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="input-group">
+        <span class="field-icon">🔒</span>
+
+        <ion-input
+          label="Mot de passe (6 caractères min.)"
+          labelPlacement="floating"
+          type="password"
+          [(ngModel)]="password">
+        </ion-input>
+      </div>
+
+      <!-- Création du compte -->
+      <ion-button
+        expand="block"
+        class="submit-button"
+        (click)="submit()"
+        [disabled]="busy">
+
+        @if (busy) {
+          <ion-spinner name="crescent"></ion-spinner>
+        } @else {
+          Créer mon compte
+        }
+
+      </ion-button>
+
+      <p class="terms-text">
+        En créant votre compte, rejoignez la communauté MovieMatch.
+      </p>
+
+    </div>
+
+    <!-- Pied de page -->
+    <div class="footer">
+      Le cinéma est encore meilleur quand il est partagé.
+    </div>
+
+  </div>
+
+</ion-content>

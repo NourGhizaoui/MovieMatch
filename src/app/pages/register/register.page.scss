@@ -1,0 +1,291 @@
+
+/* En-tête */
+.register-header ion-toolbar {
+  --background: #0b0b14;
+  --color: #ffffff;
+  --border-color: rgba(255, 255, 255, 0.08);
+}
+
+.register-header ion-back-button {
+  --color: #b49aff;
+}
+
+/* Fond général */
+.register-content {
+  --background: #0b0b14;
+}
+
+.register-container {
+  min-height: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 30px 22px 24px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(124, 58, 237, 0.20),
+      transparent 42%
+    ),
+    #0b0b14;
+}
+
+/* Présentation MovieMatch */
+.brand {
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.brand-icon {
+  width: 62px;
+  height: 62px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto 14px;
+
+  border-radius: 20px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 8px 28px rgba(139, 92, 246, 0.3);
+}
+
+.logo-icon {
+  font-size: 31px;
+}
+
+.brand h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 2.15rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.brand h1 span {
+  color: #a78bfa;
+}
+
+.brand p {
+  margin: 10px 0 0;
+  color: #a1a1b5;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* Carte d'inscription */
+.register-card {
+  width: 100%;
+  max-width: 440px;
+  box-sizing: border-box;
+
+  padding: 26px 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+
+  background: rgba(24, 24, 39, 0.94);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+}
+
+.register-card h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.55rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 8px 0 24px;
+  color: #9ca3af;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* Photo de profil */
+.photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 26px;
+  padding: 20px 12px;
+
+  border: 1px dashed #49405f;
+  border-radius: 18px;
+
+  background: rgba(139, 92, 246, 0.05);
+  text-align: center;
+}
+
+.avatar,
+.avatar-placeholder {
+  width: 104px;
+  height: 104px;
+  box-sizing: border-box;
+
+  margin-bottom: 12px;
+  border-radius: 50%;
+
+  border: 3px solid #8b5cf6;
+  box-shadow: 0 0 22px rgba(139, 92, 246, 0.18);
+}
+
+.avatar {
+  display: block;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #252239;
+}
+
+.avatar-placeholder span {
+  font-size: 42px;
+}
+
+.photo-section h3 {
+  margin: 2px 0 6px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.photo-section p {
+  margin: 0 0 12px;
+  color: #9ca3af;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.photo-button {
+  --color: #b49aff;
+  --border-color: #7652b9;
+  --border-radius: 12px;
+
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.camera-icon {
+  margin-right: 8px;
+  font-size: 17px;
+}
+
+/* Champs de saisie */
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 16px;
+  padding: 4px 13px;
+
+  border: 1px solid #343449;
+  border-radius: 14px;
+
+  background: #171725;
+  transition: border-color 0.2s ease;
+}
+
+.input-group:focus-within {
+  border-color: #8b5cf6;
+}
+
+.field-icon {
+  flex-shrink: 0;
+  width: 24px;
+
+  color: #a78bfa;
+  font-size: 19px;
+  text-align: center;
+}
+
+.input-group ion-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 52px;
+
+  --color: #ffffff;
+  --placeholder-color: #88889d;
+  --highlight-color-focused: #a78bfa;
+
+  font-size: 0.93rem;
+}
+
+/* Bouton de création */
+.submit-button {
+  --background: #7c3aed;
+  --background-hover: #8b5cf6;
+  --background-activated: #6d28d9;
+  --border-radius: 14px;
+  --box-shadow: 0 6px 18px rgba(124, 58, 237, 0.25);
+  --color: #ffffff;
+
+  height: 52px;
+  margin: 24px 0 10px;
+
+  font-size: 0.98rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.2px;
+}
+
+.submit-button ion-spinner {
+  width: 22px;
+  height: 22px;
+  color: #ffffff;
+}
+
+/* Texte informatif */
+.terms-text {
+  margin: 12px 4px 0;
+
+  color: #77778d;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Pied de page */
+.footer {
+  max-width: 340px;
+  margin-top: 24px;
+
+  color: #717187;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Petits écrans */
+@media (max-width: 360px) {
+  .register-container {
+    padding: 24px 14px;
+  }
+
+  .brand h1 {
+    font-size: 1.95rem;
+  }
+
+  .register-card {
+    padding: 22px 15px;
+  }
+
+  .photo-section {
+    padding: 18px 8px;
+  }
+}

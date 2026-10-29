@@ -1,0 +1,186 @@
+
+<ion-header class="admin-header">
+  <ion-toolbar>
+    <div class="header-content">
+      <div>
+        <span class="header-subtitle">MOVIEMATCH</span>
+        <ion-title>Administration</ion-title>
+      </div>
+      <div class="admin-badge">⚙</div>
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar class="segment-toolbar">
+    <ion-segment [(ngModel)]="tab" mode="md">
+      <ion-segment-button value="users">
+        <ion-label>Utilisateurs</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="movie">
+        <ion-label>Ajouter un film</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="admin-content">
+
+  @if (tab === 'users') {
+    <div class="page-container">
+      <div class="section-heading">
+        <div>
+          <h2>Gestion des utilisateurs</h2>
+          <p>Gérez les comptes de votre plateforme.</p>
+        </div>
+        <div class="count-badge">{{ users.length }}</div>
+      </div>
+
+      @if (users.length === 0) {
+        <div class="empty-state">
+          <div class="empty-icon">♙</div>
+          <h3>Aucun utilisateur</h3>
+          <p>Les utilisateurs apparaîtront ici.</p>
+        </div>
+      } @else {
+        <div class="users-list">
+          @for (u of users; track u.uid) {
+            <div class="user-card">
+              <div class="user-main">
+                <img
+                  class="avatar"
+                  [src]="u.photo"
+                  [alt]="u.prenom + ' ' + u.nom"
+                >
+
+                <div class="user-info">
+                  <h3>{{ u.prenom }} {{ u.nom }}</h3>
+                  <p class="user-email">{{ u.email }}</p>
+
+                  <div class="user-tags">
+                    <span
+                      class="role-tag"
+                      [class.admin-role]="u.role === 'admin'">
+                      {{ u.role }}
+                    </span>
+
+                    <span
+                      class="status-tag"
+                      [class.status-active]="u.active"
+                      [class.status-inactive]="!u.active">
+                      <span class="status-dot"></span>
+                      {{ u.active ? 'Actif' : 'Désactivé' }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="user-actions">
+                <span class="toggle-label">
+                  {{ u.active ? 'Compte activé' : 'Compte désactivé' }}
+                </span>
+
+                <ion-toggle
+                  class="user-toggle"
+                  [checked]="u.active"
+                  [disabled]="u.role === 'admin'"
+                  (ionChange)="setActive(u, $event.detail.checked)">
+                </ion-toggle>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="page-container movie-page">
+      <div class="section-heading">
+        <div>
+          <h2>Ajouter un film</h2>
+          <p>Ajoutez un nouveau film au catalogue.</p>
+        </div>
+        <div class="heading-icon">🎬</div>
+      </div>
+
+      <div class="movie-form">
+        <div class="form-intro">
+          <div class="form-icon">✦</div>
+          <div>
+            <h3>Informations du film</h3>
+            <p>Complétez les informations ci-dessous.</p>
+          </div>
+        </div>
+
+        <div class="form-fields">
+          <ion-item class="custom-input" lines="none">
+            <ion-input
+              label="Titre du film"
+              labelPlacement="floating"
+              placeholder="Ex. Inception"
+              [(ngModel)]="f.title">
+            </ion-input>
+          </ion-item>
+
+          <ion-item class="custom-input" lines="none">
+            <ion-input
+              label="Année de sortie"
+              labelPlacement="floating"
+              type="number"
+              placeholder="Ex. 2024"
+              [(ngModel)]="f.year">
+            </ion-input>
+          </ion-item>
+
+          <ion-item class="custom-input" lines="none">
+            <ion-input
+              label="Genres"
+              labelPlacement="floating"
+              placeholder="Action, Science-fiction..."
+              [(ngModel)]="f.genres">
+            </ion-input>
+          </ion-item>
+          <p class="field-hint">Séparez les genres par des virgules.</p>
+
+          <ion-item class="custom-input" lines="none">
+            <ion-input
+              label="Acteurs"
+              labelPlacement="floating"
+              placeholder="Acteur 1, Acteur 2..."
+              [(ngModel)]="f.cast">
+            </ion-input>
+          </ion-item>
+          <p class="field-hint">Séparez les noms par des virgules.</p>
+
+          <ion-item class="custom-input" lines="none">
+            <ion-input
+              label="URL de l’affiche"
+              labelPlacement="floating"
+              type="url"
+              placeholder="https://..."
+              [(ngModel)]="f.poster">
+            </ion-input>
+          </ion-item>
+
+          <ion-item class="custom-input textarea-item" lines="none">
+            <ion-textarea
+              label="Synopsis"
+              labelPlacement="floating"
+              placeholder="Décrivez l'histoire du film..."
+              [autoGrow]="true"
+              [rows]="4"
+              [(ngModel)]="f.overview">
+            </ion-textarea>
+          </ion-item>
+        </div>
+
+        <ion-button
+          expand="block"
+          class="add-movie-button"
+          (click)="addMovie()">
+          <span class="button-plus">+</span>
+          Ajouter le film
+        </ion-button>
+      </div>
+    </div>
+  }
+
+</ion-content>
