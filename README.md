@@ -21,7 +21,7 @@ MovieMatch allows users to discover movies, manage their favorite movies, and fi
 - **Frontend:** Ionic, Angular, TypeScript, HTML, SCSS
 - **Backend Services:** Firebase Authentication, Cloud Firestore
 - **Mobile:** Capacitor, Android
-- **Movie Data:** TMDB API, if configured in the project
+- **Movie Data:** TMDB API
 - **Tools:** Git, GitHub, Visual Studio Code
 
 ## ⚙️ Prerequisites
@@ -30,8 +30,8 @@ Before running the application, install:
 
 - Node.js and npm
 - Git
-- Angular CLI, if you want to use the `ng` command
-- Android Studio, if you want to build the Android application
+- Angular CLI
+- Android Studio
 
 ## 🚀 Installation
 
@@ -69,18 +69,14 @@ If the project uses local movie data instead, this step is not required.
 ### 5. Run the application
 
 ```bash
-npm start
+
+ionic serve
 ```
 
-If the project does not define an `npm start` script, use:
-
-```bash
-npx ng serve
-```
 
 Open the URL displayed in the terminal, usually:
 
-http://localhost:4200
+http://localhost:8100
 
 ## 📱 Android Setup
 
