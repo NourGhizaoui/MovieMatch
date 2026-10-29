@@ -105,11 +105,33 @@ The configured scoring model uses:
 
 The configured matching threshold is **75%**. Only active users who meet the threshold are displayed.
 
-## Screenshots
 
-![Home page](screenshots/home.png)
+## 📸 Screenshots
 
-![Movie details](screenshots/movie-details.png)
+### 🔐 Authentication
+
+| Login | Registration |
+|---|---|
+| ![Login](screenshots/Login.jfif) | ![Register](screenshots/Register.jfif) |
+
+### 🎬 Movie Management
+
+| Movie List | Add Film |
+|---|---|
+| ![Movie List](screenshots/Liste_Film.jfif) | ![Add Film](screenshots/Add_Film.jfif) |
+
+### ❤️ User Features
+
+| My Playlist | Profile |
+|---|---|
+| ![My Playlist](screenshots/My_Playlist.jfif) | ![Profile](screenshots/Profil.jfif) |
+
+### 👥 Matching and Administration
+
+| Matching | User Management |
+|---|---|
+| ![Matching](screenshots/Matching.jfif) | ![User Management](screenshots/Gestion_users.jfif) |
+
 
 ## 👩‍💻 Author
 
