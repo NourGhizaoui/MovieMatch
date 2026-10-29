@@ -105,6 +105,12 @@ The configured scoring model uses:
 
 The configured matching threshold is **75%**. Only active users who meet the threshold are displayed.
 
+## Screenshots
+
+![Home page](screenshots/home.png)
+
+![Movie details](screenshots/movie-details.png)
+
 ## 👩‍💻 Author
 
 **Nour Ghizaoui**
